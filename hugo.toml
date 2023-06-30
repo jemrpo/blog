@@ -62,9 +62,9 @@ disqusShortname = ''
 [params.author]
   avatar = "avatar.jpg" # put the file in assets folder; also ensure that image has same height and width
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
-  intro = "Juan's Blog, and no more, sorry!"
+  intro = "Juan's Blog"
   name = "Juan M Rpo"
-  description = "Juan's personal Blog"
+  description = "A regular guy with some things to write about"
 
 # Allow to override webmanifest options
 [params.webmanifest]
