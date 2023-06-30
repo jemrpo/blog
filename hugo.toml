@@ -1,0 +1,20 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+#theme = 'ananke'
+theme = "hugo-blog-awesome"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/hugo-sid"
+
+[[params.socialIcons]]
+name = "twitter"
+url = "https://twitter.com"
+
+[[params.socialIcons]]
+name = "Rss"
+url = "index.xml"
+
+[params]
+  goToTop = true
