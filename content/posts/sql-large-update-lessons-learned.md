@@ -22,7 +22,7 @@ Try modifying fewer rows in a single transaction.
 ```
 
 Now, you feel like pretty much wasted 12 hours of your time. :tired_face:\
-At least you know what is breaking it, The transaction log is filling up... :pensive:\ 
+At least you know what is breaking it, The transaction log is filling up... :pensive:\
 But still, you need to get this done fast. :worried:
 
 
