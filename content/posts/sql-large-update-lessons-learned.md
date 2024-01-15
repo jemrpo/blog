@@ -6,7 +6,7 @@ toc: true
 ---
 
 ## The Problem
-Sometimes you have some large tables in an Azure SQL Database with around two hundred million rows (200.000.000). You need to filter the rows within a column and update the rows with ``NULL`` values. You think a single query will do it, so you run the following:
+You have large tables in an Azure SQL Database with around two hundred million rows (200.000.000). You need to filter the rows within a column and update the rows with ``NULL`` values. You think a single query will do it, so you run the following:
 ```sql
 UPDATE dbo.myTable
 SET last_updated = '2023-12-31 00:00:00.000'
@@ -29,7 +29,8 @@ But still, you need to get this done fast. :worried:
 ## Why Is This Happening?
 The problem is that you are trying to update a large table, and you are doing it in a single transaction. This means that SQL will keep a copy of the original data in the transaction log, and it will keep it there until the transaction is complete. This is a problem because the transaction log is limited in size, and it will fill up. When this happens, SQL Server will terminate the transaction, and you will get the error message above.
 
-The first thing most of us would think is that the transaction log needs to be shrunk, or its size needs to be increased;
+The first thing most of us would think, is that the transaction log needs to be shrunk or its size needs to be increased;
+But you need to get more information to make a decision. 
 To get the size and the utilization of the database and the transaction log you run the following query:
 ```sql
 SELECT file_id, type_desc,
@@ -53,12 +54,12 @@ Now, you can see; that the transaction log has plenty of unused space, so shrink
 
 
 ## The Solution
-The issue can occur in any DML operation such as insert, update, or delete. so it is recommended to review 
-the transaction to avoid unnecessary writes. So one needs to reduce the number of rows that are operated on immediately by implementing batching or splitting into multiple smaller transactions. 
+The issue (transaction log getting filled) can occur in any DML operation such as insert, update, or delete. It is recommended to review the transaction to avoid unnecessary or very large writes. You need to reduce the number of rows that are operated on immediately by implementing batching or splitting into multiple smaller transactions. 
 This has proven to be one of the most effective ways to perform this kind of operation, as described in the [documentation](https://learn.microsoft.com/en-us/azure/azure-sql/performance-improve-use-batching?view=azuresql-db&preserve-view=true).
 
-Then, since you know that each day in my table has around 300.000 rows, you decide it'd be a good idea to perform 
-the ``UPDATE`` operation based on the date. So, you come up with the following script:
+You now look at the table and think about how to split the operation. In this case, we have a column called ``[Date]`` that has a date value for each row, we can use this column in while loop that decreases the date value by one day until it reaches the bottom date.
+
+So, you come up with the following script:
 
 ```sql
 DECLARE @TopDate DATE = '2023-12-31';
@@ -77,7 +78,9 @@ END;
 ```
 
 This script will update the rows in the table in batches of one day, starting from the top date and going down to the
-bottom date. This way, the transaction log will not fill up, the changes will be reflected faster on the table, and 
-the operation will be completed successfully.
+bottom date. This way, the transaction log will not fill up, the changes will be reflected faster on the table.
 
-This operation can take a long time to complete, it took me around 9 hours per table. It'd be a good idea to run it in through Apache Airflow, Azure Data Factory, AWS Glue, or any other (data) orchestration tool.
+Then, VOILÀ! :tada:\
+The script is running and you can see the rows being updated on the table.
+
+This operation can take a long time to complete, it took me around 9 hours per table. It'd be a good idea to run it in through Apache Airflow, Azure Data Factory, AWS Glue, or any other (data) orchestration tool, this way you don't have to worry about the connection getting lost or you computer hibernating.
