@@ -1,7 +1,7 @@
 baseURL = 'https://jemrpo.com'
 languageCode = 'en-us'
 defaultContentLanguage = "en-us"
-title = "Juan's Blog"
+title = "Juan's Website"
 theme = "hugo-blog-awesome"
 
 # Enable emojis globally
