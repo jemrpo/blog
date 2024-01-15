@@ -3,7 +3,6 @@ title: "Updating Large Tables in Azure SQL Database, Lessons learned"
 date: 2024-01-15T13:24:08-05:00
 tags: ["Azure", "SQL", "Databases", "SQL Server", "Azure SQL", "Data Engineering", "ETL"]
 toc: true
-draft: true
 ---
 
 ## The Problem
