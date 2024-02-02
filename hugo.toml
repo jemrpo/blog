@@ -1,7 +1,7 @@
 baseURL = 'https://jemrpo.com'
 languageCode = 'en-us'
 defaultContentLanguage = "en-us"
-title = "Juan's Website"
+title = "Juan's blog"
 theme = "hugo-blog-awesome"
 
 # Enable emojis globally
@@ -43,12 +43,12 @@ disqusShortname = ''
     weight = 30
 
 [params]
-  sitename = "Juan's Blog"
+  sitename = "Juan's blog"
   defaultColor = "dark" # set color mode: dark, light, auto
   # Setting it to 'auto' applies the color scheme based on the visitor's device color preference.If you don't specify anything, ignore this parameter, or leave it blank,
   # the default value is set to 'auto'.
   # You can take a look at layouts/index.html for more information.
-  description = "Juan's Blog, and no more"
+  description = "Juan's blog, and no more"
   mainSections = ['posts']
   toc = true # set to false to disable table of contents 'globally'
   goToTop = true # set to false to disable 'go to top' button
@@ -65,7 +65,7 @@ disqusShortname = ''
 [params.author]
   avatar = "avatar.jpg" # put the file in assets folder; also ensure that image has same height and width
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
-  intro = "Juan's Blog"
+  intro = "Juan's blog"
   name = "Juan M Rpo"
   description = "A regular guy with some things to write about"
 
