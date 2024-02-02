@@ -57,6 +57,7 @@ disqusShortname = ''
   # Your custom scripts will be concatinated to one file `custom.js`.
   # When building for production it will be minified.
   # The file `custom.js` is loaded on each page (before body tag ends).
+  rssFeedDescription = "summary"
 
 [taxonomies]
    tag = "tags"
@@ -90,6 +91,6 @@ url = "https://github.com/jemrpo"
 name = "linkedin"
 url = "https://www.linkedin.com/in/juanestebanmrpo/"
 
-# [[params.socialIcons]]
-# name = "Rss"
-# url = "index.xml"
+[[params.socialIcons]]
+name = "Rss"
+url = "index.xml"
