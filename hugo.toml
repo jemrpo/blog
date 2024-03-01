@@ -93,4 +93,4 @@ url = "https://www.linkedin.com/in/juanestebanmrpo/"
 
 [[params.socialIcons]]
 name = "Rss"
-url = "index.xml"
+url = "/index.xml"
