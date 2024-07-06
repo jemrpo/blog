@@ -12,7 +12,7 @@ type: about
 - **IT Operation Automation:** Bridge the gap between manual processes and cloud-powered automation, streamlining workflows and boosting efficiency.
 
 ## Technical Services
-- **Cloud Expert as a Service:** Do you need a fractional Cloud Expert? We can work with your team as fractional Cloud Engineers, you will have access to our expertise without the cost of full-time hires.
+- **Cloud Expert as a Service:** Boost your team with fractional Cloud Engineers. Get top-tier cloud solutions without the cost of full-time hires.
 - **Infrastructure as Code (IaC):** Develop and manage infrastructure using IaC tools like Terraform, Ansible, or OpenTofu, enabling consistent, secure, and reproducible deployments.
 - **Continuous Integration/Continuous Delivery (CI/CD):** Set up automated CI/CD pipelines for agile software development and delivery.
 - **Configuration management:** Automate configuration management and drift detection using tools like Puppet, Chef, or Ansible.
