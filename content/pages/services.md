@@ -24,4 +24,4 @@ type: about
 - **DevOps training and workshops:** Conduct training sessions and workshops to upskill teams on DevOps tools and practices.
 - **Code reviews and best practices:** Provide code reviews and guidance on cloud-native development best practices.
 - **On-call support and maintenance:** Offer on-call support for critical infrastructure and applications.
-- **Data Analytics:** Assist in extracting insights from data using tools like Power BI, or Looker.
+- **Data Analytics:** Assist in extracting insights from data using tools like Power BI, or Looker Studio.
