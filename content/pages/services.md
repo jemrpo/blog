@@ -1,10 +1,9 @@
 ---
-title: "Services Portfolio"
+title: "Professional Services"
 date: 2023-07-25T11:35:26-05:00
-description: "Services Portfolio"
+description: "Professional Services"
 type: about
 ---
-# Professional Services
 ## Consulting and Strategy
 - **Cloud strategy and migration:** Guide companies through cloud adoption, optimizing their architecture and workloads for different platforms (AWS, Azure, GCP, etc.).
 - **DevOps implementation and training:** Help companies establish efficient DevOps practices, automate workflows, and improve collaboration between development and operations teams.
