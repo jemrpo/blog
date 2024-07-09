@@ -1,7 +1,7 @@
 ---
 title: "Simplifying Event-Driven Architectures: KEDA Scaling with Managed Identity in Azure Container Apps"
 date: 2024-07-09T13:58:40-05:00
-tags: ["Azure", "KEDA", "microservices", "managedidentity", "cloudcomputing", "kubernetes"]
+tags: ["Azure", "KEDA", "microservices", "managedidentity", "cloudcomputing", "kubernetes", "EDA", "DevOps", "IaC", "Event-Driven Architecture", "Scalability", "Cloud Native", "Automation"]
 toc: true
 ---
 ## Introduction
@@ -63,7 +63,7 @@ Now, with the new feature on API version `2024-02-02-preview`, we need to specif
 ]
 ```
 
-After applying these changes (I used [OpenTofu](https://opentofu.org/) and the [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest/docs) provider), we can test. Since I'm lazy, I created 10 jobs using the following command.
+After applying these changes (I used [OpenTofu](https://opentofu.org/) and the [AzAPI](https://registry.terraform.io/providers/Azure/azapi/latest/docs) provider), we can test. I'm lazy, So I created 10 jobs using the following command.
 ```bash
 for i in {1..10}; do az pipelines run  --organization "https://dev.azure.com/AwesomeORG" \
     --branch "main" --name "adoagents-test" --project "AwesomeProject" ; sleep 3; done
@@ -73,9 +73,9 @@ Since I'm using Azure Container Apps Jobs, we have to go to the **Monitoring** >
 ![alt text](aca-job.png "ACA Job on Azure Portal")
 
 And if we go to the **Agent Pool** section in **Azure DevOps**, we can see that the jobs executed successfully.
-![alt text](ado-job.png "Job on ADO").
+![alt text](ado-job.png "Job on ADO")
 
-## Conclusion
+## Conclusions
 As you just saw, it works after making a few modifications. One of the main benefits of this new feature is that the overall architecture is simplified as you no longer need glue code or additional microservices to renew Bearer Tokens and update the secrets, or to rely on on [Personal Access Tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) which are insecure and cumbersome to manage.
 
 I used the [azure-pipelines](https://keda.sh/docs/2.14/scalers/azure-pipelines/) integration as an example, but this feature has been proven to work with other services such as [Service Bus](https://keda.sh/docs/2.14/scalers/azure-service-bus/), [Azure Storage Queues](https://keda.sh/docs/2.14/scalers/azure-storage-queue/) and more, this is great news because this feature will help to simplify your [Event Driven Architectures](https://en.wikipedia.org/wiki/Event-driven_architecture).
@@ -83,8 +83,8 @@ I used the [azure-pipelines](https://keda.sh/docs/2.14/scalers/azure-pipelines/)
 For additional information, check the following documentation.
 - [Managed identities in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/managed-identity?tabs=portal%2Cdotnet#use-managed-identity-for-scale-rules).
 - [Set scaling rules in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/scale-app?pivots=azure-cli#authentication-1).
-- KEDA [Azure Pipelines](https://keda.sh/docs/2.14/scalers/azure-pipelines/).
-- KEDA [Azure Service Bus](https://keda.sh/docs/2.14/scalers/azure-service-bus/).
-- KEDA [Azure Storage Queue](https://keda.sh/docs/2.14/scalers/azure-storage-queue/)
+- [KEDA Azure Pipelines](https://keda.sh/docs/2.14/scalers/azure-pipelines/).
+- [KEDA Azure Service Bus](https://keda.sh/docs/2.14/scalers/azure-service-bus/).
+- [KEDA Azure Storage Queue](https://keda.sh/docs/2.14/scalers/azure-storage-queue/)
 
 In case you have any comments or questions, just let me know. You can always find me on [LinkedIn](https://www.linkedin.com/in/juanestebanmrpo/).
