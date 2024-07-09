@@ -41,11 +41,11 @@ disqusShortname = ''
     name = 'About'
     url = '/about/'
     weight = 40
-  [[menu.main]]
-    pageRef="services"
-    name = 'Services'
-    url = '/services'
-    weight = 30
+  # [[menu.main]]
+  #   pageRef="services"
+  #   name = 'Services'
+  #   url = '/services'
+  #   weight = 30
 
 [params]
   sitename = "jemrpo.com"
