@@ -1,6 +1,6 @@
 ---
 title: "Simplifying Event-Driven Architectures: KEDA Scaling with Managed Identity in Azure Container Apps"
-date: 2024-07-10T13:58:40-05:00
+date: 2024-07-12T13:58:40-05:00
 tags: ["Azure", "KEDA", "microservices", "managedidentity", "cloudcomputing", "kubernetes", "EDA", "DevOps", "IaC", "Event-Driven Architecture", "Scalability", "Cloud Native", "Automation"]
 toc: true
 ---
@@ -10,10 +10,10 @@ I've been using [Azure Container Apps](https://learn.microsoft.com/en-us/azure/c
 There were ways to get around this limitation, as I described on this [GitHub issue](https://github.com/microsoft/azure-container-apps/issues/592#issuecomment-1950668036) and one of my previous [blog posts](https://jemrpo.com/posts/az-ca-202402/); but you ended up having to write a lot of glue code to build a small microservice, this adds operational overhead and will make the architecture more complex. This is fun to put together; but most of us are busy, so a simpler architecture would be ideal.
 
 ## The Microsoft Azure Team to the Rescue
-After a long wait, the team in charge of this service [announced](https://github.com/microsoft/azure-container-apps/issues/592#issuecomment-1960110969) they were working on this feature. Finally, we were seeing the light at the end of the tunnel. Then, on **20240625** we finally got the [news we were waiting for](https://github.com/microsoft/azure-container-apps/issues/592#issuecomment-2150783618): the feature was being rolled out with the API version `2024-02-02-preview`.
+After a long wait, the team in charge of this service [announced](https://github.com/microsoft/azure-container-apps/issues/592#issuecomment-1960110969) they were working on this feature. Finally, we were seeing the light at the end of the tunnel. Then, on **2024-06-25** we finally got the [news we were waiting for](https://github.com/microsoft/azure-container-apps/issues/592#issuecomment-2150783618): the feature was being rolled out with the API version `2024-02-02-preview`.
 
 ## Testing the New Feature
-Although there are many use cases and Azure services to which this can be applied, I'm going to focus on the [azure-pipelines](https://keda.sh/docs/2.13/scalers/azure-pipelines/) use case. This allows you to scale your [self-hosted Azure DevOps agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#linux) based on the pool's queue.
+Although there are many use cases and Azure services to which this can be applied, I will to focus on the [azure-pipelines](https://keda.sh/docs/2.13/scalers/azure-pipelines/) use case. This allows you to scale your [self-hosted Azure DevOps agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#linux) based on the pool's queue.
 
 Before this feature, the `rules` section of the Azure Container Apps [ARM template](https://learn.microsoft.com/en-us/azure/templates/microsoft.app/containerapps?pivots=deployment-language-arm-template) would look like this.
 ```json
@@ -42,7 +42,7 @@ Before this feature, the `rules` section of the Azure Container Apps [ARM templa
 ```
 As you might have guessed, KEDA authenticates with [Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#linux) using the Organization URL, the Personal Access Token (PAT) or Bearer Token (depending on your implementation), and the poolID or poolName.
 
-Now, with the new feature on API version `2024-02-02-preview`, we need to specify the Managed Identity we want to use, the Organization URL, and either the poolID or poolName and under the hood, it will obtain the Bearer Token to authenticate with Azure DevOps, as shown in the code below.
+Now, with the new feature on API version `2024-02-02-preview`, we need to specify the Managed Identity we want to use, the Organization URL, and either the poolID or poolName, and under the hood, it will obtain the Bearer Token to authenticate with Azure DevOps, as shown in the code below.
 ```json
 "rules": [
     {
@@ -76,7 +76,7 @@ And if we go to the **Agent Pool** section in **Azure DevOps**, we can see that 
 ![alt text](ado-job.png "Job on ADO")
 
 ## Conclusions
-As you just saw, it works after making a few modifications. One of the main benefits of this new feature is that the overall architecture is simplified as you no longer need glue code or additional microservices to renew Bearer Tokens and update the secrets, or to rely on on [Personal Access Tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) which are insecure and cumbersome to manage.
+As you just saw, it works perfectly after making a few modifications. One of the main benefits of this new feature is that the overall architecture is simplified, as you no longer need glue code or additional microservices to renew Bearer Tokens and update the secrets, or to rely on on [Personal Access Tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows) which are insecure and cumbersome to manage.
 
 I used the [azure-pipelines](https://keda.sh/docs/2.14/scalers/azure-pipelines/) integration as an example, but this feature has been proven to work with other services such as [Service Bus](https://keda.sh/docs/2.14/scalers/azure-service-bus/), [Azure Storage Queues](https://keda.sh/docs/2.14/scalers/azure-storage-queue/) and more, this is great news because this feature will help to simplify [Event Driven Architectures](https://en.wikipedia.org/wiki/Event-driven_architecture) and make them more secure.
 
