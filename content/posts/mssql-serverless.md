@@ -1,8 +1,7 @@
 ---
 title: "Sleepy Serverless SQL Database"
 date: 2024-10-19T15:51:43-05:00
-tags: ["Azure", "SQL Server", "Databases", "Serverless", "Python", "Retry Logic", "Tenacity", 
-"pyodbc", "Cold Start", "Connection Retry"]
+tags: ["Azure", "SQL Server", "Databases", "Serverless", "Python", "Retry Logic", "Tenacity", "pyodbc", "Cold Start", "Connection Retry"]
 toc: true
 ---
 ## Introduction
